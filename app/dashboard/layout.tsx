@@ -47,6 +47,8 @@ export default function DashboardLayout({
 
   return (
     <AppShell
+      transitionDuration={750}
+      transitionTimingFunction="ease"
       header={{ height: 60 }}
       navbar={{
         width: 300,
