@@ -29,7 +29,9 @@ export default function DashboardLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [opened, { toggle }] = useDisclosure();
+  // const [opened, { toggle }] = useDisclosure();
+  const [opened, { toggle: toggleMobile }] = useDisclosure();
+  const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
   const defaultTheme = useMantineTheme();
 
   const theme = createTheme({
@@ -46,13 +48,22 @@ export default function DashboardLayout({
   return (
     <AppShell
       header={{ height: 60 }}
-      navbar={{ width: 300, breakpoint: "sm", collapsed: { mobile: !opened } }}
+      navbar={{
+        width: 300,
+        breakpoint: "sm",
+        collapsed: { mobile: !opened, desktop: !desktopOpened },
+      }}
       //   footer={{ height: 60 }}
       padding="md"
     >
-      <AppShell.Header px="lg" ml="lg">
-        <Group px="lg" align="center">
-          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="md" />
+      <AppShell.Header px="lg" ml="">
+        <Group px="" align="center">
+          <Burger
+            opened={opened}
+            onClick={toggleMobile}
+            hiddenFrom="sm"
+            size="md"
+          />
           <h3>Dentist Direct</h3>
         </Group>
       </AppShell.Header>
@@ -60,28 +71,49 @@ export default function DashboardLayout({
         <AppShell.Section m="md">
           <Flex gap="md" p="lg" align="start" direction="column">
             <MantineThemeProvider theme={theme}>
+              {/* <Burger
+                opened={desktopOpened}
+                onClick={toggleDesktop}
+                visibleFrom="sm"
+              /> */}
               <Flex gap="sm" direction="row" justify="center" align="center">
                 <HomeIcon width="20" height="20" color="white" />
-                <Button component={Link} href={"/dashboard"}>
+                <Button
+                  component={Link}
+                  href={"/dashboard"}
+                  onClick={toggleMobile}
+                >
                   Home
                 </Button>
               </Flex>
               <Flex gap="sm" direction="row" justify="center" align="center">
                 <CalendarIcon width="20" height="20" color="white" />
-                <Button component={Link} href={"/dashboard/book"}>
+                <Button
+                  component={Link}
+                  href={"/dashboard/book"}
+                  onClick={toggleMobile}
+                >
                   Book Appointment
                 </Button>
               </Flex>
               <Flex gap="sm" direction="row" justify="center" align="center">
                 <ClipboardIcon width="20" height="20" color="white" />
-                <Button component={Link} href={"/dashboard/manage"}>
+                <Button
+                  component={Link}
+                  href={"/dashboard/manage"}
+                  onClick={toggleMobile}
+                >
                   Manage Appointment
                 </Button>
               </Flex>
 
               <Flex gap="sm" direction="row" justify="center" align="center">
                 <ArchiveIcon width="20" height="20" color="white" />
-                <Button component={Link} href={"/dashboard/history"}>
+                <Button
+                  component={Link}
+                  href={"/dashboard/history"}
+                  onClick={toggleMobile}
+                >
                   Appointment History
                 </Button>
               </Flex>
@@ -94,25 +126,37 @@ export default function DashboardLayout({
             <MantineThemeProvider theme={theme}>
               <Flex gap="sm" direction="row" justify="center" align="center">
                 <GearIcon width="20" height="20" color="white" />
-                <Button component={Link} href={"/dashboard/settings"}>
+                <Button
+                  component={Link}
+                  href={"/dashboard/settings"}
+                  onClick={toggleMobile}
+                >
                   Settings
                 </Button>
               </Flex>
               <Flex gap="sm" direction="row" justify="center" align="center">
                 <PersonIcon width="20" height="20" color="white" />
-                <Button component={Link} href={"/dashboard/profile"}>
+                <Button
+                  component={Link}
+                  href={"/dashboard/profile"}
+                  onClick={toggleMobile}
+                >
                   Profile
                 </Button>
               </Flex>
               <Flex gap="sm" direction="row" justify="center" align="center">
                 <QuestionMarkCircledIcon width="20" height="20" color="white" />
-                <Button component={Link} href={"/dashboard/help"}>
+                <Button
+                  component={Link}
+                  href={"/dashboard/help"}
+                  onClick={toggleMobile}
+                >
                   Help
                 </Button>
               </Flex>
               <Flex gap="sm" direction="row" justify="center" align="center">
                 <ExitIcon width="20" height="20" color="white" />
-                <Button component={Link} href={"/"}>
+                <Button component={Link} href={"/"} onClick={toggleMobile}>
                   Logout
                 </Button>
               </Flex>
