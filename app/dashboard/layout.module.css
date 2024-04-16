@@ -1,0 +1,19 @@
+.section{
+    display: flex;
+    justify-content: center;
+}
+
+.navBar {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menuContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    @media (max-width: 36em){
+        align-items: start;
+    }
+}

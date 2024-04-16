@@ -8,10 +8,12 @@ import {
   Group,
   MantineThemeProvider,
   Divider,
+  Tooltip,
   useMantineTheme,
 } from "@mantine/core";
 import Link from "next/link";
-import { useDisclosure } from "@mantine/hooks";
+import { useDisclosure, useHover } from "@mantine/hooks";
+
 import ToothIcon from "../components/logo";
 import {
   ArchiveIcon,
@@ -23,6 +25,8 @@ import {
   PersonIcon,
   ExitIcon,
 } from "@radix-ui/react-icons";
+import classes from "./layout.module.css";
+import { useState } from "react";
 
 export default function DashboardLayout({
   children,
@@ -30,16 +34,26 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   // const [opened, { toggle }] = useDisclosure();
-  const [opened, { toggle: toggleMobile }] = useDisclosure();
+  const [opened, { toggle: toggleMobile }] = useDisclosure(false, {
+    onOpen: () => console.log("Opened"),
+  });
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
+  const [desktopOpen, setDesktopOpen] = useState(true);
   const defaultTheme = useMantineTheme();
+  const { hovered, ref } = useHover();
 
+  // Creating theme
   const theme = createTheme({
     components: {
       Button: Button.extend({
         defaultProps: {
           color: "white",
           variant: "transparent",
+        },
+      }),
+      Flex: Flex.extend({
+        defaultProps: {
+          gap: "lg",
         },
       }),
     },
@@ -51,7 +65,7 @@ export default function DashboardLayout({
       transitionTimingFunction="ease"
       header={{ height: 60 }}
       navbar={{
-        width: 300,
+        width: 70,
         breakpoint: "sm",
         collapsed: { mobile: !opened, desktop: !desktopOpened },
       }}
@@ -69,98 +83,145 @@ export default function DashboardLayout({
           <h3>Dentist Direct</h3>
         </Group>
       </AppShell.Header>
-      <AppShell.Navbar p="lg" bg={defaultTheme.colors.blue[9]}>
-        <AppShell.Section m="md">
-          <Flex gap="md" p="lg" align="start" direction="column">
+      <AppShell.Navbar
+        p="lg"
+        bg={defaultTheme.colors.blue[9]}
+        className={classes.navBar}
+      >
+        <AppShell.Section m="md" className={classes.section}>
+          <Flex gap="15" p="lg" className={classes.menuContainer}>
             <MantineThemeProvider theme={theme}>
-              {/* <Burger
-                opened={desktopOpened}
-                onClick={toggleDesktop}
-                visibleFrom="sm"
-              /> */}
+              <Burger size="sm" color="white" visibleFrom="sm" />
               <Flex gap="sm" direction="row" justify="center" align="center">
-                <HomeIcon width="20" height="20" color="white" />
-                <Button
-                  component={Link}
-                  href={"/dashboard"}
-                  onClick={toggleMobile}
+                <Tooltip
+                  label="Home"
+                  position="right"
+                  offset={-5}
+                  transitionProps={{ transition: "fade", duration: 300 }}
                 >
-                  Home
-                </Button>
+                  <Button>
+                    <HomeIcon width="20" height="20" color="white" />
+                  </Button>
+                </Tooltip>
+
+                {
+                  <Button
+                    component={Link}
+                    href={"/dashboard"}
+                    onClick={toggleMobile}
+                    hiddenFrom="sm"
+                  >
+                    Home
+                  </Button>
+                }
               </Flex>
               <Flex gap="sm" direction="row" justify="center" align="center">
-                <CalendarIcon width="20" height="20" color="white" />
-                <Button
-                  component={Link}
-                  href={"/dashboard/book"}
-                  onClick={toggleMobile}
-                >
-                  Book Appointment
+                <Button>
+                  <CalendarIcon width="20" height="20" color="white" />
                 </Button>
+
+                {
+                  <Button
+                    component={Link}
+                    href={"/dashboard/book"}
+                    onClick={toggleMobile}
+                    hiddenFrom="sm"
+                  >
+                    Book Appointment
+                  </Button>
+                }
               </Flex>
               <Flex gap="sm" direction="row" justify="center" align="center">
-                <ClipboardIcon width="20" height="20" color="white" />
-                <Button
-                  component={Link}
-                  href={"/dashboard/manage"}
-                  onClick={toggleMobile}
-                >
-                  Manage Appointment
+                <Button>
+                  <ClipboardIcon width="20" height="20" color="white" />
                 </Button>
+
+                {
+                  <Button
+                    component={Link}
+                    href={"/dashboard/manage"}
+                    onClick={toggleMobile}
+                    hiddenFrom="sm"
+                  >
+                    Manage Appointment
+                  </Button>
+                }
               </Flex>
 
               <Flex gap="sm" direction="row" justify="center" align="center">
-                <ArchiveIcon width="20" height="20" color="white" />
-                <Button
-                  component={Link}
-                  href={"/dashboard/history"}
-                  onClick={toggleMobile}
-                >
-                  Appointment History
+                <Button>
+                  <ArchiveIcon width="20" height="20" color="white" />
                 </Button>
+
+                {
+                  <Button
+                    component={Link}
+                    href={"/dashboard/history"}
+                    onClick={toggleMobile}
+                    hiddenFrom="sm"
+                  >
+                    Appointment History
+                  </Button>
+                }
               </Flex>
             </MantineThemeProvider>
           </Flex>
         </AppShell.Section>
-        <Divider />
-        <AppShell.Section m="md">
-          <Flex gap="md" align="start" p="lg" direction="column">
+        <Divider c="white" color="white" />
+        <AppShell.Section m="md" className={classes.section}>
+          <Flex gap="30" p="lg" className={classes.menuContainer}>
             <MantineThemeProvider theme={theme}>
               <Flex gap="sm" direction="row" justify="center" align="center">
                 <GearIcon width="20" height="20" color="white" />
-                <Button
-                  component={Link}
-                  href={"/dashboard/settings"}
-                  onClick={toggleMobile}
-                >
-                  Settings
-                </Button>
+                {
+                  <Button
+                    component={Link}
+                    href={"/dashboard/settings"}
+                    onClick={toggleMobile}
+                    hiddenFrom="sm"
+                  >
+                    Settings
+                  </Button>
+                }
               </Flex>
               <Flex gap="sm" direction="row" justify="center" align="center">
                 <PersonIcon width="20" height="20" color="white" />
-                <Button
-                  component={Link}
-                  href={"/dashboard/profile"}
-                  onClick={toggleMobile}
-                >
-                  Profile
-                </Button>
+                {
+                  <Button
+                    component={Link}
+                    href={"/dashboard/profile"}
+                    onClick={toggleMobile}
+                    hiddenFrom="sm"
+                  >
+                    Profile
+                  </Button>
+                }
               </Flex>
               <Flex gap="sm" direction="row" justify="center" align="center">
                 <QuestionMarkCircledIcon width="20" height="20" color="white" />
-                <Button
-                  component={Link}
-                  href={"/dashboard/help"}
-                  onClick={toggleMobile}
-                >
-                  Help
-                </Button>
+                {
+                  <Button
+                    component={Link}
+                    href={"/dashboard/help"}
+                    onClick={toggleMobile}
+                    hiddenFrom="sm"
+                  >
+                    Help
+                  </Button>
+                }
               </Flex>
               <Flex gap="sm" direction="row" justify="center" align="center">
                 <ExitIcon width="20" height="20" color="white" />
-                <Button component={Link} href={"/"} onClick={toggleMobile}>
-                  Logout
-                </Button>
+                {
+                  <Button
+                    component={Link}
+                    href={"/"}
+                    onClick={toggleMobile}
+                    hiddenFrom="sm"
+                  >
+                    Logout
+                  </Button>
+                }
               </Flex>
             </MantineThemeProvider>
           </Flex>
