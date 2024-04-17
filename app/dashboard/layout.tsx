@@ -84,7 +84,7 @@ export default function DashboardLayout({
         </Group>
       </AppShell.Header>
       <AppShell.Navbar
-        p="lg"
+        p="md"
         bg={defaultTheme.colors.blue[9]}
         className={classes.navBar}
       >
@@ -116,9 +116,16 @@ export default function DashboardLayout({
                 }
               </Flex>
               <Flex gap="sm" direction="row" justify="center" align="center">
-                <Button>
-                  <CalendarIcon width="20" height="20" color="white" />
-                </Button>
+                <Tooltip
+                  label="Book Appointment"
+                  position="right"
+                  offset={-5}
+                  transitionProps={{ transition: "fade", duration: 300 }}
+                >
+                  <Button>
+                    <CalendarIcon width="20" height="20" color="white" />
+                  </Button>
+                </Tooltip>
 
                 {
                   <Button
@@ -132,9 +139,16 @@ export default function DashboardLayout({
                 }
               </Flex>
               <Flex gap="sm" direction="row" justify="center" align="center">
-                <Button>
-                  <ClipboardIcon width="20" height="20" color="white" />
-                </Button>
+                <Tooltip
+                  label="Manage Appointment"
+                  position="right"
+                  offset={-5}
+                  transitionProps={{ transition: "fade", duration: 300 }}
+                >
+                  <Button>
+                    <ClipboardIcon width="20" height="20" color="white" />
+                  </Button>
+                </Tooltip>
 
                 {
                   <Button
@@ -149,30 +163,45 @@ export default function DashboardLayout({
               </Flex>
 
               <Flex gap="sm" direction="row" justify="center" align="center">
-                <Button>
-                  <ArchiveIcon width="20" height="20" color="white" />
-                </Button>
-
-                {
-                  <Button
-                    component={Link}
-                    href={"/dashboard/history"}
-                    onClick={toggleMobile}
-                    hiddenFrom="sm"
-                  >
-                    Appointment History
+                <Tooltip
+                  label="Appointment History"
+                  position="right"
+                  offset={-5}
+                  transitionProps={{ transition: "fade", duration: 300 }}
+                >
+                  <Button>
+                    <ArchiveIcon width="20" height="20" color="white" />
                   </Button>
-                }
+                </Tooltip>
+
+                <Button
+                  component={Link}
+                  href={"/dashboard/history"}
+                  onClick={toggleMobile}
+                  hiddenFrom="sm"
+                >
+                  Appointment History
+                </Button>
               </Flex>
             </MantineThemeProvider>
           </Flex>
         </AppShell.Section>
-        <Divider c="white" color="white" />
+
         <AppShell.Section m="md" className={classes.section}>
-          <Flex gap="30" p="lg" className={classes.menuContainer}>
+          <Flex gap="15" p="lg" className={classes.menuContainer}>
             <MantineThemeProvider theme={theme}>
               <Flex gap="sm" direction="row" justify="center" align="center">
-                <GearIcon width="20" height="20" color="white" />
+                <Tooltip
+                  label="Settings"
+                  position="right"
+                  offset={-5}
+                  transitionProps={{ transition: "fade", duration: 300 }}
+                >
+                  <Button>
+                    <GearIcon width="20" height="20" color="white" />
+                  </Button>
+                </Tooltip>
+
                 {
                   <Button
                     component={Link}
@@ -185,7 +214,17 @@ export default function DashboardLayout({
                 }
               </Flex>
               <Flex gap="sm" direction="row" justify="center" align="center">
-                <PersonIcon width="20" height="20" color="white" />
+                <Tooltip
+                  label="Profile"
+                  position="right"
+                  offset={-5}
+                  transitionProps={{ transition: "fade", duration: 300 }}
+                >
+                  <Button>
+                    <PersonIcon width="20" height="20" color="white" />
+                  </Button>
+                </Tooltip>
+
                 {
                   <Button
                     component={Link}
@@ -198,7 +237,21 @@ export default function DashboardLayout({
                 }
               </Flex>
               <Flex gap="sm" direction="row" justify="center" align="center">
-                <QuestionMarkCircledIcon width="20" height="20" color="white" />
+                <Tooltip
+                  label="Help & Support"
+                  position="right"
+                  offset={-5}
+                  transitionProps={{ transition: "fade", duration: 300 }}
+                >
+                  <Button>
+                    <QuestionMarkCircledIcon
+                      width="20"
+                      height="20"
+                      color="white"
+                    />
+                  </Button>
+                </Tooltip>
+
                 {
                   <Button
                     component={Link}
@@ -211,7 +264,17 @@ export default function DashboardLayout({
                 }
               </Flex>
               <Flex gap="sm" direction="row" justify="center" align="center">
-                <ExitIcon width="20" height="20" color="white" />
+                <Tooltip
+                  label="Logout"
+                  position="right"
+                  offset={-5}
+                  transitionProps={{ transition: "fade", duration: 300 }}
+                >
+                  <Button>
+                    <ExitIcon width="20" height="20" color="white" />
+                  </Button>
+                </Tooltip>
+
                 {
                   <Button
                     component={Link}
