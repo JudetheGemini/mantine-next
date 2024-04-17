@@ -8,6 +8,7 @@ import {
   Group,
   MantineThemeProvider,
   Divider,
+  Text,
   Tooltip,
   useMantineTheme,
 } from "@mantine/core";
@@ -40,7 +41,6 @@ export default function DashboardLayout({
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
   const [desktopOpen, setDesktopOpen] = useState(true);
   const defaultTheme = useMantineTheme();
-  const { hovered, ref } = useHover();
 
   // Creating theme
   const theme = createTheme({
@@ -61,7 +61,7 @@ export default function DashboardLayout({
 
   return (
     <AppShell
-      transitionDuration={750}
+      transitionDuration={300}
       transitionTimingFunction="ease"
       header={{ height: 60 }}
       navbar={{
@@ -84,12 +84,12 @@ export default function DashboardLayout({
         </Group>
       </AppShell.Header>
       <AppShell.Navbar
-        p="md"
+        p="sm"
         bg={defaultTheme.colors.blue[9]}
         className={classes.navBar}
       >
         <AppShell.Section m="md" className={classes.section}>
-          <Flex gap="15" p="lg" className={classes.menuContainer}>
+          <Flex gap="15" p="" className={classes.menuContainer}>
             <MantineThemeProvider theme={theme}>
               <Burger size="sm" color="white" visibleFrom="sm" />
               <Flex gap="sm" direction="row" justify="center" align="center">
@@ -99,21 +99,17 @@ export default function DashboardLayout({
                   offset={-5}
                   transitionProps={{ transition: "fade", duration: 300 }}
                 >
-                  <Button>
-                    <HomeIcon width="20" height="20" color="white" />
-                  </Button>
-                </Tooltip>
-
-                {
                   <Button
                     component={Link}
                     href={"/dashboard"}
                     onClick={toggleMobile}
-                    hiddenFrom="sm"
                   >
-                    Home
+                    <Group gap="30">
+                      <HomeIcon width="20" height="20" color="white" />
+                      <Text hiddenFrom="sm">Home</Text>
+                    </Group>
                   </Button>
-                }
+                </Tooltip>
               </Flex>
               <Flex gap="sm" direction="row" justify="center" align="center">
                 <Tooltip
@@ -122,21 +118,17 @@ export default function DashboardLayout({
                   offset={-5}
                   transitionProps={{ transition: "fade", duration: 300 }}
                 >
-                  <Button>
-                    <CalendarIcon width="20" height="20" color="white" />
-                  </Button>
-                </Tooltip>
-
-                {
                   <Button
                     component={Link}
                     href={"/dashboard/book"}
                     onClick={toggleMobile}
-                    hiddenFrom="sm"
                   >
-                    Book Appointment
+                    <Group gap="30">
+                      <CalendarIcon width="20" height="20" color="white" />
+                      <Text hiddenFrom="sm">Book Appointment</Text>
+                    </Group>
                   </Button>
-                }
+                </Tooltip>
               </Flex>
               <Flex gap="sm" direction="row" justify="center" align="center">
                 <Tooltip
@@ -145,23 +137,18 @@ export default function DashboardLayout({
                   offset={-5}
                   transitionProps={{ transition: "fade", duration: 300 }}
                 >
-                  <Button>
-                    <ClipboardIcon width="20" height="20" color="white" />
-                  </Button>
-                </Tooltip>
-
-                {
                   <Button
                     component={Link}
                     href={"/dashboard/manage"}
                     onClick={toggleMobile}
-                    hiddenFrom="sm"
                   >
-                    Manage Appointment
+                    <Group gap="30">
+                      <ClipboardIcon width="20" height="20" color="white" />
+                      <Text hiddenFrom="sm">Manage Appointment</Text>
+                    </Group>
                   </Button>
-                }
+                </Tooltip>
               </Flex>
-
               <Flex gap="sm" direction="row" justify="center" align="center">
                 <Tooltip
                   label="Appointment History"
@@ -169,26 +156,24 @@ export default function DashboardLayout({
                   offset={-5}
                   transitionProps={{ transition: "fade", duration: 300 }}
                 >
-                  <Button>
-                    <ArchiveIcon width="20" height="20" color="white" />
+                  <Button
+                    component={Link}
+                    href={"/dashboard/history"}
+                    onClick={toggleMobile}
+                  >
+                    <Group gap="30">
+                      <ArchiveIcon width="20" height="20" color="white" />
+                      <Text hiddenFrom="sm">Appointment History</Text>
+                    </Group>
                   </Button>
                 </Tooltip>
-
-                <Button
-                  component={Link}
-                  href={"/dashboard/history"}
-                  onClick={toggleMobile}
-                  hiddenFrom="sm"
-                >
-                  Appointment History
-                </Button>
               </Flex>
             </MantineThemeProvider>
           </Flex>
         </AppShell.Section>
 
         <AppShell.Section m="md" className={classes.section}>
-          <Flex gap="15" p="lg" className={classes.menuContainer}>
+          <Flex gap="15" p="" className={classes.menuContainer}>
             <MantineThemeProvider theme={theme}>
               <Flex gap="sm" direction="row" justify="center" align="center">
                 <Tooltip
@@ -197,21 +182,17 @@ export default function DashboardLayout({
                   offset={-5}
                   transitionProps={{ transition: "fade", duration: 300 }}
                 >
-                  <Button>
-                    <GearIcon width="20" height="20" color="white" />
-                  </Button>
-                </Tooltip>
-
-                {
                   <Button
                     component={Link}
                     href={"/dashboard/settings"}
                     onClick={toggleMobile}
-                    hiddenFrom="sm"
                   >
-                    Settings
+                    <Group gap="30">
+                      <GearIcon width="20" height="20" color="white" />
+                      <Text hiddenFrom="sm">Settings</Text>
+                    </Group>
                   </Button>
-                }
+                </Tooltip>
               </Flex>
               <Flex gap="sm" direction="row" justify="center" align="center">
                 <Tooltip
@@ -220,21 +201,17 @@ export default function DashboardLayout({
                   offset={-5}
                   transitionProps={{ transition: "fade", duration: 300 }}
                 >
-                  <Button>
-                    <PersonIcon width="20" height="20" color="white" />
-                  </Button>
-                </Tooltip>
-
-                {
                   <Button
                     component={Link}
                     href={"/dashboard/profile"}
                     onClick={toggleMobile}
-                    hiddenFrom="sm"
                   >
-                    Profile
+                    <Group gap="30">
+                      <PersonIcon width="20" height="20" color="white" />
+                      <Text hiddenFrom="sm">Profile</Text>
+                    </Group>
                   </Button>
-                }
+                </Tooltip>
               </Flex>
               <Flex gap="sm" direction="row" justify="center" align="center">
                 <Tooltip
@@ -243,25 +220,21 @@ export default function DashboardLayout({
                   offset={-5}
                   transitionProps={{ transition: "fade", duration: 300 }}
                 >
-                  <Button>
-                    <QuestionMarkCircledIcon
-                      width="20"
-                      height="20"
-                      color="white"
-                    />
-                  </Button>
-                </Tooltip>
-
-                {
                   <Button
                     component={Link}
                     href={"/dashboard/help"}
                     onClick={toggleMobile}
-                    hiddenFrom="sm"
                   >
-                    Help
+                    <Group gap="30">
+                      <QuestionMarkCircledIcon
+                        width="20"
+                        height="20"
+                        color="white"
+                      />
+                      <Text hiddenFrom="sm">Help</Text>
+                    </Group>
                   </Button>
-                }
+                </Tooltip>
               </Flex>
               <Flex gap="sm" direction="row" justify="center" align="center">
                 <Tooltip
@@ -270,21 +243,13 @@ export default function DashboardLayout({
                   offset={-5}
                   transitionProps={{ transition: "fade", duration: 300 }}
                 >
-                  <Button>
-                    <ExitIcon width="20" height="20" color="white" />
+                  <Button component={Link} href={"/"} onClick={toggleMobile}>
+                    <Group gap="30">
+                      <ExitIcon width="20" height="20" color="white" />
+                      <Text hiddenFrom="sm">Logout</Text>
+                    </Group>
                   </Button>
                 </Tooltip>
-
-                {
-                  <Button
-                    component={Link}
-                    href={"/"}
-                    onClick={toggleMobile}
-                    hiddenFrom="sm"
-                  >
-                    Logout
-                  </Button>
-                }
               </Flex>
             </MantineThemeProvider>
           </Flex>
