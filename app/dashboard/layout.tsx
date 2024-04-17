@@ -51,9 +51,9 @@ export default function DashboardLayout({
           variant: "transparent",
         },
       }),
-      Flex: Flex.extend({
+      Text: Text.extend({
         defaultProps: {
-          gap: "lg",
+          c: "black",
         },
       }),
     },
@@ -67,12 +67,13 @@ export default function DashboardLayout({
       navbar={{
         width: 70,
         breakpoint: "sm",
+
         collapsed: { mobile: !opened, desktop: !desktopOpened },
       }}
       //   footer={{ height: 60 }}
       padding="md"
     >
-      <AppShell.Header px="lg" ml="">
+      <AppShell.Header px="lg" ml="" bg="#B8C0EA">
         <Group px="" align="center">
           <Burger
             opened={opened}
@@ -83,15 +84,11 @@ export default function DashboardLayout({
           <h3>Dentist Direct</h3>
         </Group>
       </AppShell.Header>
-      <AppShell.Navbar
-        p="sm"
-        bg={defaultTheme.colors.blue[9]}
-        className={classes.navBar}
-      >
+      <AppShell.Navbar p="sm" className={classes.navBar}>
         <AppShell.Section m="md" className={classes.section}>
           <Flex gap="15" p="" className={classes.menuContainer}>
             <MantineThemeProvider theme={theme}>
-              <Burger size="sm" color="white" visibleFrom="sm" />
+              <Burger size="sm" color="black" visibleFrom="sm" />
               <Flex gap="sm" direction="row" justify="center" align="center">
                 <Tooltip
                   label="Home"
@@ -105,7 +102,7 @@ export default function DashboardLayout({
                     onClick={toggleMobile}
                   >
                     <Group gap="30">
-                      <HomeIcon width="20" height="20" color="white" />
+                      <HomeIcon width="20" height="20" color="black" />
                       <Text hiddenFrom="sm">Home</Text>
                     </Group>
                   </Button>
@@ -124,7 +121,7 @@ export default function DashboardLayout({
                     onClick={toggleMobile}
                   >
                     <Group gap="30">
-                      <CalendarIcon width="20" height="20" color="white" />
+                      <CalendarIcon width="20" height="20" color="black" />
                       <Text hiddenFrom="sm">Book Appointment</Text>
                     </Group>
                   </Button>
@@ -143,7 +140,7 @@ export default function DashboardLayout({
                     onClick={toggleMobile}
                   >
                     <Group gap="30">
-                      <ClipboardIcon width="20" height="20" color="white" />
+                      <ClipboardIcon width="20" height="20" color="black" />
                       <Text hiddenFrom="sm">Manage Appointment</Text>
                     </Group>
                   </Button>
@@ -162,7 +159,7 @@ export default function DashboardLayout({
                     onClick={toggleMobile}
                   >
                     <Group gap="30">
-                      <ArchiveIcon width="20" height="20" color="white" />
+                      <ArchiveIcon width="20" height="20" color="black" />
                       <Text hiddenFrom="sm">Appointment History</Text>
                     </Group>
                   </Button>
@@ -188,7 +185,7 @@ export default function DashboardLayout({
                     onClick={toggleMobile}
                   >
                     <Group gap="30">
-                      <GearIcon width="20" height="20" color="white" />
+                      <GearIcon width="20" height="20" color="black" />
                       <Text hiddenFrom="sm">Settings</Text>
                     </Group>
                   </Button>
@@ -207,7 +204,7 @@ export default function DashboardLayout({
                     onClick={toggleMobile}
                   >
                     <Group gap="30">
-                      <PersonIcon width="20" height="20" color="white" />
+                      <PersonIcon width="20" height="20" color="black" />
                       <Text hiddenFrom="sm">Profile</Text>
                     </Group>
                   </Button>
@@ -229,7 +226,7 @@ export default function DashboardLayout({
                       <QuestionMarkCircledIcon
                         width="20"
                         height="20"
-                        color="white"
+                        color="black"
                       />
                       <Text hiddenFrom="sm">Help</Text>
                     </Group>
@@ -245,7 +242,7 @@ export default function DashboardLayout({
                 >
                   <Button component={Link} href={"/"} onClick={toggleMobile}>
                     <Group gap="30">
-                      <ExitIcon width="20" height="20" color="white" />
+                      <ExitIcon width="20" height="20" color="black" />
                       <Text hiddenFrom="sm">Logout</Text>
                     </Group>
                   </Button>
